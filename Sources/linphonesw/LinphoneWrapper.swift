@@ -11541,7 +11541,7 @@ public class Call : LinphoneObject
 		
 	
 	/// Gets the mesured playback volume level (received from remote) in dbm0. 
-	/// - Returns: float Volume level in percentage. 
+	/// - Returns: float Volume level in dbm0. 
 	public var playVolume: Float
 	{
 	
@@ -11577,7 +11577,7 @@ public class Call : LinphoneObject
 		
 	
 	/// Gets the mesured record volume level (sent to remote) in dbm0. 
-	/// - Returns: float Volume level in percentage. 
+	/// - Returns: float Volume level in dbm0. 
 	public var recordVolume: Float
 	{
 	
