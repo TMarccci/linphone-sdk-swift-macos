@@ -15970,6 +15970,21 @@ public class ChatRoom : LinphoneObject
 	}
 	
 	
+	/// Returns the local account to which this chat room is related. 
+	/// - Returns: the related ``Account`` object if any, nil otherwise.    
+	public var account: Account?
+	{
+	
+						let cPointer = linphone_chat_room_get_account(cPtr)
+			if (cPointer == nil) {
+				return nil
+			}
+			let result = Account.getSwiftObject(cObject:cPointer!)
+			return result
+
+	}
+		
+	
 	/// Gets the current call associated to this chatroom if any To commit a message,
 	/// use ``ChatMessage/send()`` 
 	/// - Returns: ``Call`` or nil.    
@@ -32404,6 +32419,32 @@ public class Friend : LinphoneObject
 
 	}
 		
+	/// Sets the first name for this friend is available. 
+	/// - Parameter firstName: the first name to set    
+	/// - Returns: 0 if successful, -1 otherwise 
+	
+	/// Gets the first name for this friend if vCard exists. 
+	/// - Returns: The first name of this friend.    
+	public var firstName: String?
+	{
+	
+			
+			let cPointer = linphone_friend_get_first_name(cPtr)
+			if (cPointer == nil) {
+				return nil
+			}
+			let result = charArrayToString(charPointer: cPointer)
+			return result
+
+	}
+	public func setFirstname(newValue: String) throws
+	{
+		let exception_result = linphone_friend_set_first_name(cPtr, newValue)
+		guard exception_result == 0 else {
+			throw LinphoneError.exception(result: "username setter returned value \(exception_result)")
+		}
+	}
+		
 	
 	/// Check that the given friend is in a friend list. 
 	/// - Returns: The ``FriendList`` the friend is in if any, nil otherwise.    
@@ -32476,11 +32517,37 @@ public class Friend : LinphoneObject
 		}
 	}
 		
-	/// Set the display name for this friend. 
+	/// Sets the last name for this friend if vCard is available. 
+	/// - Parameter lastName: the last name to set    
+	/// - Returns: 0 if successful, -1 otherwise 
+	
+	/// Gets the last name for this friend if vCard exists. 
+	/// - Returns: The last name of this friend.    
+	public var lastName: String?
+	{
+	
+			
+			let cPointer = linphone_friend_get_last_name(cPtr)
+			if (cPointer == nil) {
+				return nil
+			}
+			let result = charArrayToString(charPointer: cPointer)
+			return result
+
+	}
+	public func setLastname(newValue: String) throws
+	{
+		let exception_result = linphone_friend_set_last_name(cPtr, newValue)
+		guard exception_result == 0 else {
+			throw LinphoneError.exception(result: "username setter returned value \(exception_result)")
+		}
+	}
+		
+	/// Sets the display name for this friend. 
 	/// - Parameter name: the display name to set    
 	/// - Returns: 0 if successful, -1 otherwise 
 	
-	/// Get the display name for this friend. 
+	/// Gets the display name for this friend. 
 	/// - Returns: The display name of this friend.    
 	public var name: String?
 	{
@@ -32813,6 +32880,17 @@ public class Friend : LinphoneObject
 	public func done() 
 	{
 		linphone_friend_done(cPtr)
+	}
+	
+	
+	
+	/// Returns the a string matching the vCard inside the friend, if any. 
+	/// - Returns: the vCard as a string or nil.    
+	public func dumpVcard() -> String
+	{
+		let cstr = linphone_friend_dump_vcard(cPtr)
+		let result = charArrayToString(charPointer: cstr)
+		return result
 	}
 	
 	
