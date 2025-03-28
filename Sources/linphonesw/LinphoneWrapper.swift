@@ -40823,6 +40823,16 @@ public class SearchResult : LinphoneObject
 	{
 		return linphone_search_result_has_capability(cPtr, LinphoneFriendCapability(rawValue: CUnsignedInt(capability.rawValue))) != 0
 	}
+	
+	
+	
+	/// Returns whether or not the search result has the given source flag. 
+	/// - Parameter source: the ``MagicSearch.Source`` to check 
+	/// - Returns: true if it has the source flag, false otherwise. 
+	public func hasSourceFlag(source:MagicSearch.Source) -> Bool
+	{
+		return linphone_search_result_has_source_flag(cPtr, LinphoneMagicSearchSource(rawValue: CInt(source.rawValue))) != 0
+	}
 }
 
 
