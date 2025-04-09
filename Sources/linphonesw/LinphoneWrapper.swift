@@ -17367,7 +17367,7 @@ public class ChatRoomParams : LinphoneObject
 	
 	/// Returns whether the given parameters are valid or not. 
 	/// - Returns: true if the given parameters are valid, false otherwise 
-	/// - deprecated: 20/05/2024. Use linphone_chat_params_is_valid() instead. 
+	/// - deprecated: 20/05/2024. Use ``ConferenceParams/isValid()`` instead. 
 	@available(*, deprecated)
 	public var isValid: Bool
 	{
@@ -33203,9 +33203,15 @@ public class FriendList : LinphoneObject
 	public enum Kind:Int
 	{
 		
+		/// Default value, used when no other type applies. 
 		case Default = -1
+		/// Used when list is synchronized with a remote CardDAV server. 
 		case CardDAV = 0
+		/// Used for simple vCards list remotely provisionned by a server. 
 		case VCard4 = 1
+		/// Friend list used by app for cache purposes, friends added in this list will be
+		/// ignored by ``MagicSearch``. 
+		case ApplicationCache = 2
 	}
 	
 	
