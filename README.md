@@ -21,7 +21,7 @@
 # Build information
 
 version : 5.4.9-pre.1+fdd9d865
-branch : remotes/origin/release/5.4
+branch : pipelines/93683
 architecture : arm64 x86_64
 
 Enabled features:
