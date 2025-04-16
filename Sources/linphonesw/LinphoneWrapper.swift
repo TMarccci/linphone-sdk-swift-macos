@@ -31545,7 +31545,7 @@ public class Factory : LinphoneObject
 	/// Create a new ``BearerToken`` object. 
 	/// The expiration time may be set to zero if unknown, in which case the ``Core``
 	/// will anyway use the refresh token if an access token is rejected by a server. 
-	/// - Parameter token: the token, as an opaque string. 
+	/// - Parameter token: the token, as an opaque string.    
 	/// - Parameter expirationTime: the expiration time as the number of seconds since
 	/// the Epoch, 1970-01-01 00:00:00 +0000 (UTC). 
 	/// - Returns: the newly created ``BearerToken`` .    
