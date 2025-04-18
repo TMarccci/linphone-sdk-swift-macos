@@ -21927,6 +21927,29 @@ public class Core : LinphoneObject
 
 	}
 		
+	/// Set the conference availability before start. 
+	/// It is the number of seconds clients can join the conference before its actual
+	/// start time. 
+	/// - Parameter seconds: number of seconds the conference can be joined early. A
+	/// negative value means always
+	/// - Warning: This setting is only applicable to conference servers 
+	
+	/// Gets the conference availability before start. 
+	/// - Returns: the number of seconds the conference can be joined early
+	/// - Warning: This setting is only applicable to conference servers 
+	public var conferenceAvailabilityBeforeStart: Int
+	{
+	
+		get
+		{ 
+						return Int(linphone_core_get_conference_availability_before_start(cPtr))
+		}
+		set
+		{
+			linphone_core_set_conference_availability_before_start(cPtr, (newValue))
+		}
+	}
+		
 	/// Set the conference cleanup timer period. 
 	/// This timer helps managing the automatic deletion of ended conferences. In fact,
 	/// under normal circumstances a conference is deleted only if it transition from
@@ -21937,7 +21960,7 @@ public class Core : LinphoneObject
 	/// - Parameter seconds: period of the timer. A 0 or negative value stops the timer 
 	
 	/// Gets the conference cleanup timer period. 
-	/// - Returns: the period of the conference cleanup timer period 
+	/// - Returns: the period of the conference cleanup timer 
 	public var conferenceCleanupPeriod: Int
 	{
 	
@@ -21948,6 +21971,29 @@ public class Core : LinphoneObject
 		set
 		{
 			linphone_core_set_conference_cleanup_period(cPtr, (newValue))
+		}
+	}
+		
+	/// Set the conference expire period. 
+	/// It is the number of seconds after the end time or the last participant joined -
+	/// whichever is later - the conference cannot be joined anymore 
+	/// - Parameter seconds: number of seconds before the conference expires. A 0 or
+	/// negative value means immediately after the end
+	/// - Warning: This setting is only applicable to conference servers 
+	
+	/// Gets the conference expire period. 
+	/// - Returns: the number of second after which the conference cannot be joined
+	/// - Warning: This setting is only applicable to conference servers 
+	public var conferenceExpirePeriod: Int
+	{
+	
+		get
+		{ 
+						return Int(linphone_core_get_conference_expire_period(cPtr))
+		}
+		set
+		{
+			linphone_core_set_conference_expire_period(cPtr, (newValue))
 		}
 	}
 		
