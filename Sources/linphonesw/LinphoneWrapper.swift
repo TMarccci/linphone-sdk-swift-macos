@@ -2,7 +2,7 @@
 LinphoneWrapper.swift
 Copyright (c) 2010-2022 Belledonne Communications SARL.
 
-This file is part of Liblinphone 
+This file is part of Liblinphone
 (see https://gitlab.linphone.org/BC/public/liblinphone).
 
 This program is free software: you can redistribute it and/or modify
@@ -8426,9 +8426,9 @@ public class AccountParams : LinphoneObject
 			return result
 
 	}
-	public func setIdentityaddress(newValue: Address) throws
+	public func setIdentityaddress(newValue: Address?) throws
 	{
-		let exception_result = linphone_account_params_set_identity_address(cPtr, newValue.cPtr)
+		let exception_result = linphone_account_params_set_identity_address(cPtr, newValue?.cPtr)
 		guard exception_result == 0 else {
 			throw LinphoneError.exception(result: "username setter returned value \(exception_result)")
 		}
@@ -9083,7 +9083,7 @@ public class AccountParams : LinphoneObject
 
 	}
 	@available(*, deprecated)
-	public func setServeraddr(newValue: String) throws
+	public func setServeraddr(newValue: String?) throws
 	{
 		let exception_result = linphone_account_params_set_server_addr(cPtr, newValue)
 		guard exception_result == 0 else {
@@ -9109,9 +9109,9 @@ public class AccountParams : LinphoneObject
 			return result
 
 	}
-	public func setServeraddress(newValue: Address) throws
+	public func setServeraddress(newValue: Address?) throws
 	{
-		let exception_result = linphone_account_params_set_server_address(cPtr, newValue.cPtr)
+		let exception_result = linphone_account_params_set_server_address(cPtr, newValue?.cPtr)
 		guard exception_result == 0 else {
 			throw LinphoneError.exception(result: "username setter returned value \(exception_result)")
 		}
@@ -9343,7 +9343,7 @@ public class Address : LinphoneObject
 			return result
 
 	}
-	public func setDisplayname(newValue: String) throws
+	public func setDisplayname(newValue: String?) throws
 	{
 		let exception_result = linphone_address_set_display_name(cPtr, newValue)
 		guard exception_result == 0 else {
@@ -9368,7 +9368,7 @@ public class Address : LinphoneObject
 			return result
 
 	}
-	public func setDomain(newValue: String) throws
+	public func setDomain(newValue: String?) throws
 	{
 		let exception_result = linphone_address_set_domain(cPtr, newValue)
 		guard exception_result == 0 else {
@@ -9547,7 +9547,7 @@ public class Address : LinphoneObject
 			return result
 
 	}
-	public func setUsername(newValue: String) throws
+	public func setUsername(newValue: String?) throws
 	{
 		let exception_result = linphone_address_set_username(cPtr, newValue)
 		guard exception_result == 0 else {
@@ -21283,7 +21283,7 @@ public class Core : LinphoneObject
 			return result
 
 	}
-	public func setAudiomulticastaddr(newValue: String) throws
+	public func setAudiomulticastaddr(newValue: String?) throws
 	{
 		let exception_result = linphone_core_set_audio_multicast_addr(cPtr, newValue)
 		guard exception_result == 0 else {
@@ -21844,7 +21844,7 @@ public class Core : LinphoneObject
 
 	}
 	@available(*, deprecated)
-	public func setCapturedevice(newValue: String) throws
+	public func setCapturedevice(newValue: String?) throws
 	{
 		let exception_result = linphone_core_set_capture_device(cPtr, newValue)
 		guard exception_result == 0 else {
@@ -23731,7 +23731,7 @@ public class Core : LinphoneObject
 			return result
 
 	}
-	public func setMediadevice(newValue: String) throws
+	public func setMediadevice(newValue: String?) throws
 	{
 		let exception_result = linphone_core_set_media_device(cPtr, newValue)
 		guard exception_result == 0 else {
@@ -24173,7 +24173,7 @@ public class Core : LinphoneObject
 
 	}
 	@available(*, deprecated)
-	public func setPlaybackdevice(newValue: String) throws
+	public func setPlaybackdevice(newValue: String?) throws
 	{
 		let exception_result = linphone_core_set_playback_device(cPtr, newValue)
 		guard exception_result == 0 else {
@@ -24402,7 +24402,7 @@ public class Core : LinphoneObject
 			return result
 
 	}
-	public func setProvisioninguri(newValue: String) throws
+	public func setProvisioninguri(newValue: String?) throws
 	{
 		let exception_result = linphone_core_set_provisioning_uri(cPtr, newValue)
 		guard exception_result == 0 else {
@@ -24801,7 +24801,7 @@ public class Core : LinphoneObject
 			return result
 
 	}
-	public func setRingerdevice(newValue: String) throws
+	public func setRingerdevice(newValue: String?) throws
 	{
 		let exception_result = linphone_core_set_ringer_device(cPtr, newValue)
 		guard exception_result == 0 else {
@@ -25119,7 +25119,7 @@ public class Core : LinphoneObject
 			return result
 
 	}
-	public func setStaticpicture(newValue: String) throws
+	public func setStaticpicture(newValue: String?) throws
 	{
 		let exception_result = linphone_core_set_static_picture(cPtr, newValue)
 		guard exception_result == 0 else {
@@ -25837,7 +25837,7 @@ public class Core : LinphoneObject
 			return result
 
 	}
-	public func setVideodevice(newValue: String) throws
+	public func setVideodevice(newValue: String?) throws
 	{
 		let exception_result = linphone_core_set_video_device(cPtr, newValue)
 		guard exception_result == 0 else {
@@ -25982,7 +25982,7 @@ public class Core : LinphoneObject
 			return result
 
 	}
-	public func setVideomulticastaddr(newValue: String) throws
+	public func setVideomulticastaddr(newValue: String?) throws
 	{
 		let exception_result = linphone_core_set_video_multicast_addr(cPtr, newValue)
 		guard exception_result == 0 else {
@@ -32367,9 +32367,9 @@ public class Friend : LinphoneObject
 			return result
 
 	}
-	public func setAddress(newValue: Address) throws
+	public func setAddress(newValue: Address?) throws
 	{
-		let exception_result = linphone_friend_set_address(cPtr, newValue.cPtr)
+		let exception_result = linphone_friend_set_address(cPtr, newValue?.cPtr)
 		guard exception_result == 0 else {
 			throw LinphoneError.exception(result: "username setter returned value \(exception_result)")
 		}
@@ -32483,7 +32483,7 @@ public class Friend : LinphoneObject
 			return result
 
 	}
-	public func setFirstname(newValue: String) throws
+	public func setFirstname(newValue: String?) throws
 	{
 		let exception_result = linphone_friend_set_first_name(cPtr, newValue)
 		guard exception_result == 0 else {
@@ -32581,7 +32581,7 @@ public class Friend : LinphoneObject
 			return result
 
 	}
-	public func setLastname(newValue: String) throws
+	public func setLastname(newValue: String?) throws
 	{
 		let exception_result = linphone_friend_set_last_name(cPtr, newValue)
 		guard exception_result == 0 else {
@@ -32607,7 +32607,7 @@ public class Friend : LinphoneObject
 			return result
 
 	}
-	public func setName(newValue: String) throws
+	public func setName(newValue: String?) throws
 	{
 		let exception_result = linphone_friend_set_name(cPtr, newValue)
 		guard exception_result == 0 else {
@@ -37483,7 +37483,7 @@ public class PresenceActivity : LinphoneObject
 			return result
 
 	}
-	public func setDescription(newValue: String) throws
+	public func setDescription(newValue: String?) throws
 	{
 		let exception_result = linphone_presence_activity_set_description(cPtr, newValue)
 		guard exception_result == 0 else {
@@ -37694,7 +37694,7 @@ public class PresenceModel : LinphoneObject
 			return result
 
 	}
-	public func setContact(newValue: String) throws
+	public func setContact(newValue: String?) throws
 	{
 		let exception_result = linphone_presence_model_set_contact(cPtr, newValue)
 		guard exception_result == 0 else {
@@ -37771,9 +37771,9 @@ public class PresenceModel : LinphoneObject
 			return result
 
 	}
-	public func setPresentity(newValue: Address) throws
+	public func setPresentity(newValue: Address?) throws
 	{
-		let exception_result = linphone_presence_model_set_presentity(cPtr, newValue.cPtr)
+		let exception_result = linphone_presence_model_set_presentity(cPtr, newValue?.cPtr)
 		guard exception_result == 0 else {
 			throw LinphoneError.exception(result: "username setter returned value \(exception_result)")
 		}
@@ -38108,7 +38108,7 @@ public class PresenceNote : LinphoneObject
 			return result
 
 	}
-	public func setLang(newValue: String) throws
+	public func setLang(newValue: String?) throws
 	{
 		let exception_result = linphone_presence_note_set_lang(cPtr, newValue)
 		guard exception_result == 0 else {
@@ -38178,7 +38178,7 @@ public class PresencePerson : LinphoneObject
 			return result
 
 	}
-	public func setId(newValue: String) throws
+	public func setId(newValue: String?) throws
 	{
 		let exception_result = linphone_presence_person_set_id(cPtr, newValue)
 		guard exception_result == 0 else {
@@ -38426,7 +38426,7 @@ public class PresenceService : LinphoneObject
 			return result
 
 	}
-	public func setContact(newValue: String) throws
+	public func setContact(newValue: String?) throws
 	{
 		let exception_result = linphone_presence_service_set_contact(cPtr, newValue)
 		guard exception_result == 0 else {
@@ -38458,7 +38458,7 @@ public class PresenceService : LinphoneObject
 			return result
 
 	}
-	public func setId(newValue: String) throws
+	public func setId(newValue: String?) throws
 	{
 		let exception_result = linphone_presence_service_set_id(cPtr, newValue)
 		guard exception_result == 0 else {
@@ -38968,9 +38968,9 @@ public class ProxyConfig : LinphoneObject
 
 	}
 	@available(*, deprecated)
-	public func setIdentityaddress(newValue: Address) throws
+	public func setIdentityaddress(newValue: Address?) throws
 	{
-		let exception_result = linphone_proxy_config_set_identity_address(cPtr, newValue.cPtr)
+		let exception_result = linphone_proxy_config_set_identity_address(cPtr, newValue?.cPtr)
 		guard exception_result == 0 else {
 			throw LinphoneError.exception(result: "username setter returned value \(exception_result)")
 		}
@@ -39452,7 +39452,7 @@ public class ProxyConfig : LinphoneObject
 
 	}
 	@available(*, deprecated)
-	public func setServeraddr(newValue: String) throws
+	public func setServeraddr(newValue: String?) throws
 	{
 		let exception_result = linphone_proxy_config_set_server_addr(cPtr, newValue)
 		guard exception_result == 0 else {
