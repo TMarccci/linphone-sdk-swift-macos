@@ -24184,7 +24184,7 @@ public class Core : LinphoneObject
 	/// Allow to control play level before entering sound card: gain in db. 
 	/// - Parameter level: The new play level 
 	
-	/// Get playback gain in db before entering sound card. 
+	/// Gets playback gain in db (before entering sound card). 
 	/// - Returns: The current playback gain 
 	public var playbackGainDb: Float
 	{
