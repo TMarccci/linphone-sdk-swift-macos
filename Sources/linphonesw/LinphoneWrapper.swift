@@ -8338,9 +8338,9 @@ public class AccountParams : LinphoneObject
 	/// - Parameter enable: true to replace + by the international prefix, false
 	/// otherwise. 
 	
-	/// Return whether or not the + should be replaced by 00. 
-	/// - Returns: Whether liblinphone should replace "+" by "00" in dialed numbers
-	/// (passed to ``Core/invite(url:)``). 
+	/// Return whether or not the + should be replaced by the Internal Call Prefix. 
+	/// - Returns: Whether liblinphone should replace "+" by the Internal Call Prefix.
+	/// in dialed numbers (passed to ``Core/invite(url:)``). 
 	public var dialEscapePlusEnabled: Bool
 	{
 	
@@ -10267,8 +10267,9 @@ public class AuthInfo : LinphoneObject
 	}
 		
 	/// Set the OAUTH2 client_id. 
-	/// The client_id may be used to renew access token from refresh token. - See also:
-	/// ``setRefreshToken(token:)`` 
+	/// The client_id may be used to renew access token from refresh token. If a
+	/// client_secret is required, it has to be set through
+	/// ``setClientSecret(clientSecret:)``. - See also: ``setRefreshToken(token:)`` 
 	/// - Parameter clientId: the client_id.    
 	
 	/// Get the previously set OAUTH2 client_id. 
@@ -10289,6 +10290,32 @@ public class AuthInfo : LinphoneObject
 		set
 		{
 			linphone_auth_info_set_client_id(cPtr, newValue)
+		}
+	}
+		
+	/// Set the OAUTH2 client_secret. 
+	/// The client_secret may be used to renew access token from refresh token.
+	/// - See also: ``setRefreshToken(token:)`` 
+	/// - Parameter clientSecret: the client_secret.    
+	
+	/// Get the previously set OAUTH2 client_secret. 
+	/// - Returns: the client_secret.    
+	public var clientSecret: String?
+	{
+	
+		get
+		{ 
+			
+			let cPointer = linphone_auth_info_get_client_secret(cPtr)
+			if (cPointer == nil) {
+				return nil
+			}
+			let result = charArrayToString(charPointer: cPointer)
+			return result
+		}
+		set
+		{
+			linphone_auth_info_set_client_secret(cPtr, newValue)
 		}
 	}
 		
@@ -25910,9 +25937,11 @@ public class Core : LinphoneObject
 	}
 		
 	/// Sets the DSCP field for outgoing video streams. 
-	/// The DSCP defines the quality of service in IP packets. - Note: It is usually
-	/// useless or a bad idea to try to play with DSCP bits unless having full control
-	/// on the network. 
+	/// The DSCP defines the quality of service in IP packets. When RTP bundling is
+	/// negociated during the call (see ``enableRtpBundle(value:)``), the video packets
+	/// are sent through the audio RTP/UDP connection, which leaves the video dscp
+	/// setting wihtout effect. - Note: It is usually useless or a bad idea to try to
+	/// play with DSCP bits unless having full control on the network. 
 	/// - Warning: Setting the DSCP bits is more or less well supported by operating
 	/// systems and sometimes requires to disable IPv6. 
 	/// - Parameter dscp: The DSCP value to set 
@@ -26319,7 +26348,7 @@ public class Core : LinphoneObject
 	
 	
 	/// Adds authentication information to the ``Core``. 
-	/// That piece of information will be used during all SIP transactions that require
+	/// These nformation will be used during all SIP or HTTP transactions that require
 	/// authentication. 
 	/// - Parameter info: The ``AuthInfo`` to add.    
 	public func addAuthInfo(info:AuthInfo) 
