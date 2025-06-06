@@ -24365,6 +24365,8 @@ public class Core : LinphoneObject
 	/// - Returns: 0 if successful, -1 otherwise 
 	
 	/// Returns the default identity when no account is used. 
+	/// This SIP address usually contains a private ip address, and may not be routable
+	/// globally.
 	/// - Returns: the primary contact identity    
 	public var primaryContact: String
 	{
@@ -24381,6 +24383,23 @@ public class Core : LinphoneObject
 		guard exception_result == 0 else {
 			throw LinphoneError.exception(result: "username setter returned value \(exception_result)")
 		}
+	}
+		
+	
+	/// Same as ``getPrimaryContact()`` but the result is a ``Address`` object instead
+	/// of a string. 
+	/// - Returns: a ``Address`` object.       
+	public var primaryContactAddress: Address?
+	{
+	
+						let cPointer = linphone_core_get_primary_contact_address(cPtr)
+			if (cPointer == nil) {
+				return nil
+			}
+			let result = Address.getSwiftObject(cObject:cPointer!)
+			belle_sip_object_unref(UnsafeMutableRawPointer(cPointer))
+			return result
+
 	}
 		
 	
@@ -27530,7 +27549,9 @@ public class Core : LinphoneObject
 	
 	/// Same as ``getPrimaryContact()`` but the result is a ``Address`` object instead
 	/// of const char *. 
-	/// - Returns: a ``Address`` object.    
+	/// - Returns: a ``Address`` object.   
+	/// - deprecated: prefer using ``getPrimaryContactAddress()`` 
+	@available(*, deprecated)
 	public func createPrimaryContactParsed() throws -> Address
 	{
 		let cPointer = linphone_core_create_primary_contact_parsed(cPtr)
