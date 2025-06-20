@@ -21,7 +21,7 @@
 # Build information
 
 version : 5.4.24-pre.2+ea07601338
-branch : pipelines/96899
+branch : pipelines/96955
 architecture : arm64 x86_64
 
 Enabled features:
