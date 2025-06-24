@@ -32076,8 +32076,7 @@ public class Factory : LinphoneObject
 	/// - Parameter config: A ``Config`` object holding the configuration for the
 	/// ``Core`` to be instantiated.    
 	/// - Parameter systemContext: A pointer to a system object required by the core to
-	/// operate. Currently it is required to pass an android Context on android, pass
-	/// nil on other platforms.    
+	/// operate.
 	/// - Parameter appGroupId: Name of iOS App Group that lead to the file system that
 	/// is shared between an app and its app extensions.    
 	/// - Parameter mainCore: Indicate if we want to create a "Main Core" or an
