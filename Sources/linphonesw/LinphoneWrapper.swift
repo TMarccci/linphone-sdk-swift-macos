@@ -8333,14 +8333,15 @@ public class AccountParams : LinphoneObject
 		}
 	}
 		
-	/// Set whether liblinphone should replace "+" by international calling prefix in
-	/// dialed numbers (passed to linphone_core_invite). 
+	/// Set whether liblinphone should replace "+" by international calling prefix
+	/// (ICP) in dialed numbers (passed to linphone_core_invite). 
 	/// - Parameter enable: true to replace + by the international prefix, false
 	/// otherwise. 
 	
-	/// Return whether or not the + should be replaced by the Internal Call Prefix. 
-	/// - Returns: Whether liblinphone should replace "+" by the Internal Call Prefix.
-	/// in dialed numbers (passed to ``Core/invite(url:)``). 
+	/// Return whether or not the + should be replaced by the International Call
+	/// Prefix. 
+	/// - Returns: Whether liblinphone should replace "+" by the International Call
+	/// Prefix. in dialed numbers (passed to ``Core/invite(url:)``). 
 	public var dialEscapePlusEnabled: Bool
 	{
 	
@@ -8480,9 +8481,14 @@ public class AccountParams : LinphoneObject
 		}
 	}
 		
-	/// Sets an international prefix to be automatically prepended when inviting a
-	/// number with ``Core/invite(url:)``; This international prefix shall usually be
-	/// the country code of the country where the user is living, without "+". 
+	/// Sets an international prefix (country code) to be automatically prepended when
+	/// inviting a number with ``Core/invite(url:)`` or when using
+	/// ``Account/normalizePhoneNumber(username:)``. 
+	/// This international prefix shall usually be the country code of the country
+	/// where the user is living, without "+". - Warning: It is also referred as 'ccc'
+	/// (Calling Country Code) and must not be confused with the ICP (International
+	/// Call Prefix). The ICP is a fixed property of the country dial plan, and cannot
+	/// be set in the ``AccountParams`` . 
 	/// - Parameter prefix: The prefix to set (withouth the +).    
 	
 	/// Gets the prefix set for this account params. 
