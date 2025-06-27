@@ -34631,13 +34631,13 @@ public class LdapParams : LinphoneObject
 		}
 	}
 		
-	/// Check these attributes to build Name Friend, separated by a comma and the first
-	/// is the highest priority. 
-	/// Default value : "sn".
+	/// List of LDAP attributes to check for the contact name, separated by a comma and
+	/// the first being the highest priority. 
+	/// Default value : "sn". 
 	/// - Parameter nameAttribute: The comma separated attributes for the search.    
 	
-	/// Get the attributes to build Name Friend, separated by a comma and the first is
-	/// the highest priority. 
+	/// Get the list of LDAP attributes to check for the contact name, separated by a
+	/// comma and the first being the highest priority. 
 	/// - Returns: The comma separated attributes for the search.    
 	public var nameAttribute: String?
 	{
