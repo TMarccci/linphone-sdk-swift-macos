@@ -8549,7 +8549,7 @@ public class AccountParams : LinphoneObject
 		
 	/// Set the base(s) x3dh algorithm. 
 	/// accept an ordered comma separated list (without space) of lime base algorithms
-	/// accepted values are a combinaison of : c25519, c448 and c25519k512 nil is also
+	/// accepted values are a combination of: c25519, c448 and c25519mlk512 nil is also
 	/// valid, it will unset the value 
 	/// - Parameter algo: The x3dh base algorithm.    
 	
@@ -23126,6 +23126,28 @@ public class Core : LinphoneObject
 			let result = ImNotifPolicy.getSwiftObject(cObject:cPointer!)
 			return result
 
+	}
+		
+	/// Set the IMDN resend period. 
+	/// It is the number of seconds after the first attempt to send, an IMDN message is
+	/// sent again on startup if failed earlier on 
+	/// - Parameter seconds: number of seconds after the first attempt to send an IMDN,
+	/// it is retried at startup. A negative value means all IMDNs are resent at
+	/// startup. 
+	
+	/// Gets the IMDN resend period. 
+	/// - Returns: the number of second to resend an failed IMDN message 
+	public var imdnResendPeriod: Int
+	{
+	
+		get
+		{ 
+						return Int(linphone_core_get_imdn_resend_period(cPtr))
+		}
+		set
+		{
+			linphone_core_set_imdn_resend_period(cPtr, (newValue))
+		}
 	}
 		
 	/// Sets the threshold for sending IMDN to all participants to a ``ChatRoom``. 
