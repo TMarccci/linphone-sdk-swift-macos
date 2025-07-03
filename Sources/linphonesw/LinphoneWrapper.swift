@@ -23998,7 +23998,7 @@ public class Core : LinphoneObject
 		
 	/// Set the native window id where the preview video (local camera) is to be
 	/// displayed. 
-	/// This has to be used in conjonction with ``usePreviewWindow(yesno:)``. see
+	/// This has to be used in conjunction with ``usePreviewWindow(yesno:)``. see
 	/// ``setNativeVideoWindowId(windowId:)`` for general details about window_id
 	/// On Android : #org.linphone.mediastream.video.capture.CaptureTextureView is used
 	/// for ``setNativePreviewWindowId(windowId:)``. It is inherited from #TextureView
@@ -24057,9 +24057,9 @@ public class Core : LinphoneObject
 	/// must be selected by using ``setVideoDisplayFilter(filterName:)``. Setting
 	/// window id is only used to stop rendering by passing
 	/// LINPHONE_VIDEO_DISPLAY_NONE. ``getNativeVideoWindowId()`` returns a
-	/// #QQuickFramebufferObject::Renderer and ``createNativeVideoWindowId()`` creates
-	/// one. After a creation, ``setNativeVideoWindowId(windowId:)`` must be called
-	/// with the new object.
+	/// #QQuickFramebufferObject::Renderer and ``createNativeVideoWindowId(context:)``
+	/// creates one. After a creation, ``setNativeVideoWindowId(windowId:)`` must be
+	/// called with the new object.
 	/// On mobile operating systems, LINPHONE_VIDEO_DISPLAY_AUTO is not supported and
 	/// window_id depends of the platform : iOS : It is a UIView. Android : It is a
 	/// TextureView.
@@ -27376,15 +27376,31 @@ public class Core : LinphoneObject
 	
 	
 	
+	/// Create a Window ID for the video preview window. 
+	/// Available for MSQOGL and MSOGL. see ``setNativeVideoWindowId(windowId:)`` for
+	/// details about window_id
+	/// MSQOgl can be used for the creation. ``createNativePreviewWindowId(context:)``
+	/// returns a #QQuickFramebufferObject::Renderer. This object must be returned by
+	/// your QQuickFramebufferObject::createRenderer() overload for Qt.
+	/// linphone_core_set_native_preview_window_id_2() must be called with this object
+	/// after the creation. Note : Qt blocks GUI thread when calling createRenderer(),
+	/// so it is safe to call linphone functions there if needed.
+	/// A context can be used to prevent Linphone from allocating the container
+	/// (#MSOglContextInfo for MSOGL).
+	/// - Parameter context: preallocated Window ID (Used only for MSOGL)    
+	/// - Returns: The created Window ID.    
+	public func createNativePreviewWindowId(context:UnsafeMutableRawPointer?) throws -> UnsafeMutableRawPointer
+	{
+		return linphone_core_create_native_preview_window_id_2(cPtr, context)
+	}
+	
+	
+	
 	/// Create a native window handle for the video preview window. 
-	/// see ``setNativeVideoWindowId(windowId:)`` for details about window_id
-	/// MSQOgl can be used for the creation. ``createNativePreviewWindowId()`` returns
-	/// a #QQuickFramebufferObject::Renderer. This object must be returned by your
-	/// QQuickFramebufferObject::createRenderer() overload for Qt.
-	/// ``setNativePreviewWindowId(windowId:)`` must be called with this object after
-	/// the creation. Note : Qt blocks GUI thread when calling createRenderer(), so it
-	/// is safe to call linphone functions there if needed.
-	/// - Returns: The native window handle of the video preview window.    
+	/// see ``createNativePreviewWindowId(context:)`` for details
+	/// - Returns: The native window handle of the video preview window.   
+	/// - deprecated: 23/06/2025 Use ``createNativePreviewWindowId(context:)`` instead 
+	@available(*, deprecated)
 	public func createNativePreviewWindowId() throws -> UnsafeMutableRawPointer
 	{
 		return linphone_core_create_native_preview_window_id(cPtr)
@@ -27392,15 +27408,32 @@ public class Core : LinphoneObject
 	
 	
 	
-	/// Create a native window handle for the video window. 
-	/// see ``setNativeVideoWindowId(windowId:)`` for details about window_id
-	/// When MSQOgl can be used for the creation: ``createNativeVideoWindowId()``
-	/// returns a #QQuickFramebufferObject::Renderer. This object must be returned by
-	/// your QQuickFramebufferObject::createRenderer() overload for Qt.
+	/// Create a Window ID from the current call. 
+	/// Available for MSQOGL and MSOGL. see ``setNativeVideoWindowId(windowId:)`` for
+	/// details about window_id
+	/// When MSQOgl can be used for the creation:
+	/// ``createNativeVideoWindowId(context:)`` returns a
+	/// #QQuickFramebufferObject::Renderer. This object must be returned by your
+	/// QQuickFramebufferObject::createRenderer() overload for Qt.
 	/// ``setNativeVideoWindowId(windowId:)`` must be called with this object after the
 	/// creation. Note : Qt blocks GUI thread when calling createRenderer(), so it is
 	/// safe to call linphone functions there if needed.
-	/// - Returns: The native window handle of the video window.    
+	/// A context can be used to prevent Linphone from allocating the container
+	/// (#MSOglContextInfo for MSOGL).
+	/// - Parameter context: preallocated Window ID (Used only for MSOGL)    
+	/// - Returns: The created Window ID    
+	public func createNativeVideoWindowId(context:UnsafeMutableRawPointer?) throws -> UnsafeMutableRawPointer
+	{
+		return linphone_core_create_native_video_window_id_2(cPtr, context)
+	}
+	
+	
+	
+	/// Create a native window handle for the video window from the current call. 
+	/// see ``createNativeVideoWindowId(context:)`` for details
+	/// - Returns: The native window handle of the video window.   
+	/// - deprecated: 23/06/2025 Use ``createNativeVideoWindowId(context:)`` instead 
+	@available(*, deprecated)
 	public func createNativeVideoWindowId() throws -> UnsafeMutableRawPointer
 	{
 		return linphone_core_create_native_video_window_id(cPtr)
