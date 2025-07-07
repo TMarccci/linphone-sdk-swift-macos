@@ -12218,7 +12218,21 @@ public class Call : LinphoneObject
 	
 	/// Create a native video window id where the video is to be displayed. 
 	/// - See also: ``Core/setNativeVideoWindowId(windowId:)`` for a general discussion
-	/// about window IDs. 
+	/// about window IDs.
+	/// A context can be used to prevent Linphone from allocating the container
+	/// (#MSOglContextInfo for MSOGL). nil if not used. 
+	/// - Parameter context: preallocated Window ID (Used only for MSOGL)    
+	/// - Returns: the native video window id (type may vary depending on platform).    
+	public func createNativeVideoWindowId(context:UnsafeMutableRawPointer?) throws -> UnsafeMutableRawPointer
+	{
+		return linphone_call_create_native_video_window_id_2(cPtr, context)
+	}
+	
+	
+	
+	/// Create a native video window id where the video is to be displayed. 
+	/// - See also: ``Core/setNativeVideoWindowId(windowId:)`` for a general discussion
+	/// about window IDs.
 	/// - Returns: the native video window id (type may vary depending on platform).    
 	public func createNativeVideoWindowId() throws -> UnsafeMutableRawPointer
 	{
@@ -27386,7 +27400,7 @@ public class Core : LinphoneObject
 	/// after the creation. Note : Qt blocks GUI thread when calling createRenderer(),
 	/// so it is safe to call linphone functions there if needed.
 	/// A context can be used to prevent Linphone from allocating the container
-	/// (#MSOglContextInfo for MSOGL).
+	/// (#MSOglContextInfo for MSOGL). nil if not used.
 	/// - Parameter context: preallocated Window ID (Used only for MSOGL)    
 	/// - Returns: The created Window ID.    
 	public func createNativePreviewWindowId(context:UnsafeMutableRawPointer?) throws -> UnsafeMutableRawPointer
@@ -27398,9 +27412,7 @@ public class Core : LinphoneObject
 	
 	/// Create a native window handle for the video preview window. 
 	/// see ``createNativePreviewWindowId(context:)`` for details
-	/// - Returns: The native window handle of the video preview window.   
-	/// - deprecated: 23/06/2025 Use ``createNativePreviewWindowId(context:)`` instead 
-	@available(*, deprecated)
+	/// - Returns: The native window handle of the video preview window.    
 	public func createNativePreviewWindowId() throws -> UnsafeMutableRawPointer
 	{
 		return linphone_core_create_native_preview_window_id(cPtr)
@@ -27419,7 +27431,7 @@ public class Core : LinphoneObject
 	/// creation. Note : Qt blocks GUI thread when calling createRenderer(), so it is
 	/// safe to call linphone functions there if needed.
 	/// A context can be used to prevent Linphone from allocating the container
-	/// (#MSOglContextInfo for MSOGL).
+	/// (#MSOglContextInfo for MSOGL). nil if not used.
 	/// - Parameter context: preallocated Window ID (Used only for MSOGL)    
 	/// - Returns: The created Window ID    
 	public func createNativeVideoWindowId(context:UnsafeMutableRawPointer?) throws -> UnsafeMutableRawPointer
@@ -27431,9 +27443,7 @@ public class Core : LinphoneObject
 	
 	/// Create a native window handle for the video window from the current call. 
 	/// see ``createNativeVideoWindowId(context:)`` for details
-	/// - Returns: The native window handle of the video window.   
-	/// - deprecated: 23/06/2025 Use ``createNativeVideoWindowId(context:)`` instead 
-	@available(*, deprecated)
+	/// - Returns: The native window handle of the video window.    
 	public func createNativeVideoWindowId() throws -> UnsafeMutableRawPointer
 	{
 		return linphone_core_create_native_video_window_id(cPtr)
@@ -36629,7 +36639,23 @@ public class ParticipantDevice : LinphoneObject
 	
 	
 	/// Creates a window ID and return it. 
-	/// - Returns: the window ID of the device    
+	/// - See also: ``Core/setNativeVideoWindowId(windowId:)`` for a general discussion
+	/// about window IDs.
+	/// A context can be used to prevent Linphone from allocating the container
+	/// (#MSOglContextInfo for MSOGL). nil if not used.
+	/// - Parameter context: preallocated Window ID (Used only for MSOGL)    
+	/// - Returns: the native video window id (type may vary depending on platform).    
+	public func createNativeVideoWindowId(context:UnsafeMutableRawPointer?) throws -> UnsafeMutableRawPointer
+	{
+		return linphone_participant_device_create_native_video_window_id_2(cPtr, context)
+	}
+	
+	
+	
+	/// Creates a window ID and return it. 
+	/// - See also: ``Core/setNativeVideoWindowId(windowId:)`` for a general discussion
+	/// about window IDs.
+	/// - Returns: the native video window id (type may vary depending on platform).    
 	public func createNativeVideoWindowId() throws -> UnsafeMutableRawPointer
 	{
 		return linphone_participant_device_create_native_video_window_id(cPtr)
@@ -37421,6 +37447,18 @@ public class Player : LinphoneObject
 	public func close() 
 	{
 		linphone_player_close(cPtr)
+	}
+	
+	
+	
+	/// Create a window id to be used to display video if any. 
+	/// A context can be used to prevent Linphone from allocating the container
+	/// (#MSOglContextInfo for MSOGL). nil if not used.
+	/// - Parameter context: preallocated Window ID (Used only for MSOGL)    
+	/// - Returns: window_id The window id pointer to use.    
+	public func createWindowId(context:UnsafeMutableRawPointer?) throws -> UnsafeMutableRawPointer
+	{
+		return linphone_player_create_window_id_2(cPtr, context)
 	}
 	
 	
