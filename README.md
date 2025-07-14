@@ -21,7 +21,7 @@
 # Build information
 
 version : 5.4.27-pre.1+1cc59a2929
-branch : pipelines/98366
+branch : pipelines/98334
 architecture : arm64 x86_64
 
 Enabled features:
