@@ -16180,10 +16180,13 @@ public class ChatRoom : LinphoneObject
 		
 	
 	/// Returns current parameters associated with the chat room. 
-	/// This is typically the parameters passed at chat room chat_roomeation to
-	/// linphone_core_chat_roomeate_chat_room() or some default parameters if no
-	/// ``ChatRoomParams`` was explicitely passed during chat room chat_roomeation. 
+	/// This is typically the parameters passed during the ``ChatRoom`` creation
+	/// process to linphone_core_chat_room_create_chat_room() or some default
+	/// parameters if no ``ChatRoomParams`` was explicitely passed during ``ChatRoom``
+	/// creation. 
 	/// - Returns: the current ``ChatRoomParams`` parameters.    
+	/// - deprecated: 17/07/2025. Use ``getParams()`` instead. 
+	@available(*, deprecated)
 	public var currentParams: ChatRoomParams?
 	{
 	
@@ -16464,6 +16467,25 @@ public class ChatRoom : LinphoneObject
 	{
 	
 						return Int(linphone_chat_room_get_nb_participants(cPtr))
+
+	}
+		
+	
+	/// Returns current parameters associated with the chat room. 
+	/// This is typically the parameters passed during the ``ChatRoom`` creation
+	/// process to linphone_core_chat_room_create_chat_room() or some default
+	/// parameters if no ``ChatRoomParams`` was explicitely passed during ``ChatRoom``
+	/// creation. 
+	/// - Returns: the current ``ChatRoomParams`` parameters.    
+	public var params: ConferenceParams?
+	{
+	
+						let cPointer = linphone_chat_room_get_params(cPtr)
+			if (cPointer == nil) {
+				return nil
+			}
+			let result = ConferenceParams.getSwiftObject(cObject:cPointer!)
+			return result
 
 	}
 		
