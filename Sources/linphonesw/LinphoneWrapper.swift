@@ -23906,6 +23906,27 @@ public class Core : LinphoneObject
 		}
 	}
 		
+	/// It sets the duration of the timer that starts just after the SUBSCRIBE is sent
+	/// to delay the sending of chat messages in group chats. 
+	/// - Parameter duration: the duration of the timer in seconds. 
+	/// - Warning: it is only useful to set this property if
+	/// linphone_core_send_message_after_notify_enabled returns false 
+	
+	/// Returns the duration of the timer that delays the sending of chat messages. 
+	/// - Returns: the duration of the timer in seconds 
+	public var messageSendingDelay: Int
+	{
+	
+		get
+		{ 
+						return Int(linphone_core_get_message_sending_delay(cPtr))
+		}
+		set
+		{
+			linphone_core_set_message_sending_delay(cPtr, CInt(newValue))
+		}
+	}
+		
 	/// Enables or disables the microphone. 
 	/// This effectively enable or disable microphone (mute) for currently the running
 	/// call or conference if any, as well as it applies to future currently running
@@ -25020,6 +25041,28 @@ public class Core : LinphoneObject
 		set
 		{
 			linphone_core_enable_self_view(cPtr, newValue==true ? 1:0)
+		}
+	}
+		
+	/// Enable sending of chat message on group chats only after receiving the NOTIFY
+	/// full state If it is disabled, as it is the default value, message will be sent
+	/// after the delay set by linphone_core_get_message_sending_delay 
+	/// - Parameter enabled: true if enabled, false otherwise. 
+	
+	/// Returns enablement of sending chat messages on group chats after receiving the
+	/// NOTIFY full state. 
+	/// - Returns: true if the core waits for the NOTIFY full statet before sending
+	/// messages to group chats, false otherwise. 
+	public var sendMessageAfterNotifyEnabled: Bool
+	{
+	
+		get
+		{ 
+						return linphone_core_send_message_after_notify_enabled(cPtr) != 0
+		}
+		set
+		{
+			linphone_core_enable_send_message_after_notify(cPtr, newValue==true ? 1:0)
 		}
 	}
 		
