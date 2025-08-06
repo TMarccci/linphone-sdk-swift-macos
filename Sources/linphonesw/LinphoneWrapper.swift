@@ -29464,6 +29464,8 @@ public class Core : LinphoneObject
 	/// ``GlobalState`` is either On. State will changed to Shutdown and then Off. This
 	/// function may block to perform SIP server unregistration. Using ``stopAsync()``
 	/// is preferred.
+	/// - Warning: This function must never be called from within an event notification
+	/// triggered by Liblinphone. 
 	public func stop() 
 	{
 		linphone_core_stop(cPtr)
@@ -29477,6 +29479,8 @@ public class Core : LinphoneObject
 	/// to end asynchronous tasks (terminate call, etc.). When all tasks are finished,
 	/// State will change to Off. Must be called only if ``GlobalState`` is On. When
 	/// ``GlobalState`` is Off ``Core`` can be started again using ``start()``.
+	/// - Warning: This function must never be called from within an event notification
+	/// triggered by Liblinphone. 
 	public func stopAsync() 
 	{
 		linphone_core_stop_async(cPtr)
