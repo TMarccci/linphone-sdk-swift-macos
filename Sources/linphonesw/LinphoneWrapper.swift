@@ -8882,9 +8882,19 @@ public class AccountParams : LinphoneObject
 	}
 		
 	/// Set the realm of the given account params. 
+	/// This is optional, but recommended as it allows digest authentication context to
+	/// be re-used accross subsequent SIP requests, which reduces by almost half the
+	/// number of SIP rmessages exchanged between a client and a server. The server is
+	/// required to support the qop=auth digest authentication mode to benefit from
+	/// this feature. - See also: rfc7616 https://datatracker.ietf.org/doc/html/rfc7616 
 	/// - Parameter realm: New realm value.    
 	
 	/// Get the realm of the given account params. 
+	/// This is optional, but recommended as it allows digest authentication context to
+	/// be re-used accross subsequent SIP requests, which reduces by almost half the
+	/// number of SIP rmessages exchanged between a client and a server. The server is
+	/// required to support the qop=auth digest authentication mode to benefit from
+	/// this feature. - See also: rfc7616 https://datatracker.ietf.org/doc/html/rfc7616 
 	/// - Returns: The realm of the account params.    
 	public var realm: String?
 	{
