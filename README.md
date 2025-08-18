@@ -21,7 +21,7 @@
 # Build information
 
 version : 5.4.38-pre.5+13861775c0
-branch : pipelines/100013
+branch : pipelines/100047
 architecture : arm64 x86_64
 
 Enabled features:
