@@ -302,10 +302,10 @@ public enum MediaResourceMode:Int
 {
 	
 	/// Media resources are not shared. 
-	case ExclusiveMediaResources = 0
+	case Exclusive = 0
 	
 	/// Media resources are shared. 
-	case SharedMediaResources = 1
+	case Shared = 1
 }
 
 ///Basic status as defined in section 4.1.4 of RFC 3863. 
