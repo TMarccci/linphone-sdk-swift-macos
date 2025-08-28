@@ -23079,6 +23079,30 @@ public class Core : LinphoneObject
 
 	}
 		
+	/// Sets whether to keep GRUU parameter in the conference addresses. 
+	/// - Parameter enabled: true if enabled, false otherwise. 
+	/// - Warning: This setting will also remove the GRUU parameter from all conference
+	/// and chat room addresses stored in the database at startup. Setting it to false
+	/// after it being set to true earlier on does not restore the previous state of
+	/// the database 
+	
+	/// Returns whether the gr parameter is kept in the conference address. 
+	/// - Returns: true if the "gr" parameter is kept in the conference address, false
+	/// otherwise. 
+	/// - See also: ``enableGruuInConferenceAddress(enabled:)`` for more informations 
+	public var gruuInConferenceAddressEnabled: Bool
+	{
+	
+		get
+		{ 
+						return linphone_core_gruu_in_conference_address_enabled(cPtr) != 0
+		}
+		set
+		{
+			linphone_core_enable_gruu_in_conference_address(cPtr, newValue==true ? 1:0)
+		}
+	}
+		
 	/// Tells ``Core`` to guess local hostname automatically in primary contact. 
 	/// - Parameter enable: whether to enable the guess hostname feature or not 
 	
@@ -23543,7 +23567,7 @@ public class Core : LinphoneObject
 	/// This label is used by the logger to give context. When running an application
 	/// with several ``Core`` objects, (such as a test), it is useful to enhance the
 	/// log's readability'. 
-	/// - Parameter label: a developper-friendly label. 
+	/// - Parameter label: a developer-friendly label. 
 	
 	/// Get the label assigned to the ``Core``. 
 	/// The default value is nil (no label). 
