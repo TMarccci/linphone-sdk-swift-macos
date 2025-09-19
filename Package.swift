@@ -8,7 +8,7 @@ let package = Package(
     ],
     products: [
         .library(
-            name: "linphonesw",
+            name: "linphonesw-macos",
             targets: ["linphonesw"]
         )
     ],
